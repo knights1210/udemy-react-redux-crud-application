@@ -1,10 +1,11 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 const App = () => {
   const profiles = [
     { name: "Taro", age: 10 },
     { name: "Hanako", age: 5 },
-    { name: "Noname" }
+    { name: "Noname", age : 3 }
   ];
   return (
     <>
@@ -22,8 +23,9 @@ const User = (props) => {
     </div>
   );
 };
-
-User.defaultProps = {
-  age: 1
+// propsの型の定義を決める
+User.propTypes = {
+  name: PropTypes.string,//ココがnameがstring(文字列)
+  age: PropTypes.number.isRequired//ココはageがnumber(数字)isRequiredで必須項目になる
 }
 export default App;
