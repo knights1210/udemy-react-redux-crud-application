@@ -1,31 +1,31 @@
-import React from "react";
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
 
-const App = () => {
-  const profiles = [
-    { name: "Taro", age: 10 },
-    { name: "Hanako", age: 5 },
-    { name: "Noname", age : 3 }
-  ];
-  return (
-    <>
-      {profiles.map((profile, index) => {
-        return <User name={profile.name} age={profile.age} key={index}/>;
-      })}
-    </>
-  );
-};
+const App = () => <Counter></Counter>;
 
-const User = (props) => {
-  return (
-    <div>
-      Hi, I am {props.name}, and {props.age}years old!
-    </div>
-  );
-};
-// propsの型の定義を決める
-User.propTypes = {
-  name: PropTypes.string,//ココがnameがstring(文字列)
-  age: PropTypes.number.isRequired//ココはageがnumber(数字)isRequiredで必須項目になる
+class Counter extends Component {
+  //ココ↑が呼び出されたときに実行
+  constructor(props) {
+    //↑初期化処理時に実行されるメソッド
+    super(props);
+    this.state = { count: 0 };
+  }
+  //setStateが実行されると再レンダーされる状態(state)を変化させる場合はsetStateを使う
+  handlePlusButton = () => {
+    this.setState({ count: this.state.count + 1 });
+  };
+
+  handleMinusButton = () => {
+    this.setState({ count: this.state.count - 1 });
+  };
+  render() {
+    return (
+      <>
+        <div>count: {this.state.count}</div>
+        <button onClick={this.handlePlusButton}>+1</button>
+        <button onClick={this.handleMinusButton}>-1</button>
+      </>
+    );
+  }
 }
+
 export default App;
